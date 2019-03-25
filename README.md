@@ -1,11 +1,13 @@
 # Soul6in6Gun_infra
 Soul6in6Gun Infra repository
 
-#Homework №5, first steps in GCP:
+# Homework №5, first steps in GCP:
 Configs of bastion network:
 
+````
 bastion_IP = 35.246.220.192
 someinternalhost_IP = 10.156.0.3
+````
 
 webUI for pritunl:
 https://35.246.220.192.xip.io/
@@ -61,4 +63,3 @@ gcloud compute firewall-rules create default-puma-server\
   --source-ranges=0.0.0.0/0 \
   --target-tags=puma-server
 ````
-
