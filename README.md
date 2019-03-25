@@ -32,12 +32,12 @@ IdentityFile ~/.ssh/id_rsa
 ````
 
 # Homework №6 cloud-testapp
+
 Server parameters:
 ````
 testapp_IP = 34.76.29.59
 testapp_port = 9292
 ````
-
 Startup script:
 ````
 gcloud compute instances create reddit-app \
@@ -61,3 +61,4 @@ gcloud compute firewall-rules create default-puma-server\
   --source-ranges=0.0.0.0/0 \
   --target-tags=puma-server
 ````
+
