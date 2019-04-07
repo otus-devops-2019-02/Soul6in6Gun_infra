@@ -1,0 +1,15 @@
+[Unit]
+Description=puma-server
+After=network.target
+
+[Service]
+Type=forking
+User=soul_in_gun
+Group=soul_in_gun
+ExecStart=/home/soul_in_gun/reddit/puma --dir /home/appuser/reddit/ --pidfile /tmp/puma.pid --daemon
+ExecStop=/bin/kill -HUP $MAINPID
+PIDFile=/tmp/puma.pid
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
