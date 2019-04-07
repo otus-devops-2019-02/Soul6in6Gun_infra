@@ -1,7 +1,9 @@
 # Soul6in6Gun_infra
 Soul6in6Gun Infra repository
 
-# Homework №5, first steps in GCP:
+[![Build Status](https://travis-ci.com/otus-devops-2019-02/Soul6in6Gun_infra.svg?branch=master)](https://travis-ci.com/otus-devops-2019-02/Soul6in6Gun_infra)
+
+<details><summary>Homework №5, first steps in GCP</summary><p>
 Configs of bastion network:
 
 ````
@@ -32,8 +34,9 @@ ForwardAgent yes
 IdentityFile ~/.ssh/id_rsa
 
 ````
+</p></details>
 
-# Homework №6 cloud-testapp
+<details><summary>Homework №6, cloud-testapp</summary><p>
 
 Server parameters:
 ````
@@ -63,3 +66,12 @@ gcloud compute firewall-rules create default-puma-server\
   --source-ranges=0.0.0.0/0 \
   --target-tags=puma-server
 ````
+</p></details>
+<details><summary>Homework №7, packer</summary><p>
+How to start packer:
+Edit variables.json (example included) then:
+  
+````
+packer build -var-file=variables.json immutable.json
+````
+</p></details>
