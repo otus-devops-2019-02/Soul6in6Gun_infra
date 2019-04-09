@@ -1,5 +1,5 @@
 project = "name"
 zone = "a"
-public_key_path = "~/.ssh/key.pub"
-private_key_path = "~/.ssh/key"
+public_key_path = "~/.ssh/appuser.pub"
+private_key_path = "~/.ssh/appuser"
 disk_image = "reddit-base"
