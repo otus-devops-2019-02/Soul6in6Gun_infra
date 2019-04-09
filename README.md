@@ -75,3 +75,79 @@ Edit variables.json (example included) then:
 packer build -var-file=variables.json immutable.json
 ````
 </p></details>
+<details><summary>Homework №8, terraform-1</summary><p>
+
+Multiple SSH-keys workaround (WARNING, it deletes all keys that are not in the terraform config):
+````
+resource "google_compute_project_metadata" "default" {
+        metadata {
+                ssh-keys = <<EOF
+                appuser:${file(var.public_key_path)}
+                appuser1:${file(var.public_key_path)}
+                appuser2:${file(var.public_key_path)}
+        EOF
+        }
+}
+````
+
+Added load balancing config lb.tf
+Works as health-checked virtual machine pool balancing with counter variable "count" used as index-name for created multiple VMs and to indicate how many hosts are needed in pool. You can start it with
+  
+````
+terraform apply -var 'count=2' -var-file=terraform.tfvars -auto-approve=true
+````
+
+Using separate configurations of each node of pool can result in errors and inconsistency between hosts so don't do that :)
+How-to do right way:
+In main.tf vm resource config add:
+````
+resource "google_compute_instance" "app" {
+  name         = "reddit-app-${count.index}"
+  count        = "${var.count}"
+  machine_type = "g1-small"
+  zone         = "${var.region}-${var.zone}"
+  ...
+````
+in variables.tf add:
+````
+...
+variable "count" {
+  default = "1"
+}
+````
+
+
+<details><summary>lb.tf contents:</summary><p>
+
+````
+resource "google_compute_http_health_check" "puma-http-hc" {
+  name         = "puma-http-health-check"
+  request_path = "/"
+  port         = "9292"
+
+  timeout_sec        = 1
+  check_interval_sec = 1
+}
+
+resource "google_compute_target_pool" "puma-target-pool" {
+  name = "instance-pool"
+
+  instances = [
+    "${google_compute_instance.app.*.self_link}",
+  ]
+
+  health_checks = [
+    "${google_compute_http_health_check.puma-http-hc.self_link}",
+  ]
+}
+
+resource "google_compute_forwarding_rule" "puma-lb-forwarding-rule" {
+  name                  = "puma-lb-forwarding-rule"
+  load_balancing_scheme = "EXTERNAL"
+  target                = "${google_compute_target_pool.puma-target-pool.self_link}"
+}
+````
+
+</p></details>
+
+</p></details>
