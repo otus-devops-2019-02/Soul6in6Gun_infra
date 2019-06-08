@@ -148,6 +148,16 @@ resource "google_compute_forwarding_rule" "puma-lb-forwarding-rule" {
 }
 ````
 
+
 </p></details>
+</p></details>
+<details><summary>Homework №9, terraform-2</summary><p>
+Made configurations for separate instances for packer (db.jsom, app.json)
+  
+Same goes for terraform instances 
+
+Made modules and used them in environment setup
+
+Added storage bucket
 
 </p></details>
