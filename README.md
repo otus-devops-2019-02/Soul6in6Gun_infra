@@ -161,3 +161,9 @@ Made modules and used them in environment setup
 Added storage bucket
 
 </p></details>
+<details><summary>Homework №10, ansible-1</summary><p>
+Installed ansible
+Created both standart and yml invertory file
+Made standart ansible.cfg
+Created ansible playbook for recurring tasks
+</p></details>
