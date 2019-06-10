@@ -163,7 +163,20 @@ Added storage bucket
 </p></details>
 <details><summary>Homework №10, ansible-1</summary><p>
 Installed ansible
+
 Created both standart and yml invertory file
+
 Made standart ansible.cfg
+
 Created ansible playbook for recurring tasks
+</p></details>
+
+<details><summary>Homework №11, ansible-2</summary><p>
+Created jinja2 templates
+  
+Host group limits with --limit and --tags
+
+Making multiple playbooks held up in one by import
+
+Deploy with Ansible and Packer
 </p></details>
