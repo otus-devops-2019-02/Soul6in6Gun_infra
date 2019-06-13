@@ -1,14 +1,14 @@
 ---
-- name: Configure hosts & deploy application
+- name: Configure hosts & deploy application # <-- Словесное описание сценария
 
-  hosts: all
+  hosts: all # <-- Для каких хостов будут выполняться описанные ниже таски
 
-  tasks:
+  tasks: # <-- Блок тасков (заданий), которые будут выполняться для данных хостов
     - name: Change mongo config file
-      become: true
+      become: true  -- Выполнить задание от root
       template:
-        src: templates/mongod.conf.j2
-        dest: /etc/mongod.conf
-        mode: 0644
+        src: templates/mongod.conf.j2  -- Путь до локального файла-шаблона
+        dest: /etc/mongod.conf  -- Путь на удаленном хосте
+        mode: 0644  -- Права на файл, которые нужно установить
       tags: db-tag
 
