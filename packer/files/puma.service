@@ -1,0 +1,11 @@
+[Unit]
+Description=Puma Ruby Application
+
+[Service]
+User={{ user `userapp` }}
+Group={{ groupuser}}
+WorkingDirectory=/home/{{ user `appuser` }}/reddit
+ExecStart=/home/{{user `workappdir` }}/puma -d 
+
+[Install]
+WantedBy=multi-user.target

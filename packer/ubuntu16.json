@@ -1,42 +1,33 @@
 {
-	"variables":
-         {
-                "project_id": "null",
-                "disk_size": "10",
-                "disk_type": "pd-standard",
-                "image_description": "reddit-app",
-                "machine_type": "null",
-                "network": "default",
-                "image_family": "null",
-                "tags": "puma-server",
-                "zone": "europe-west1-c"
+     "variables": {
+    	    "project_id": null,
+    	    "source_image_family": null,
+            "machine_type": "f1-micro"
+    },
+    "builders": [
+        {
+            "type": "googlecompute",
+	    "project_id": "{{user `project_id`}}",
+            "image_name": "reddit-base-{{timestamp}}",
+            "image_family": "reddit-base",
+            "zone": "europe-north1-b",
+            "machine_type": "{{user `machine_type`}}",
+           "ssh_username": "appuser",
+            "source_image_family": "{{user `source_image_family`}}"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "scripts/install_ruby.sh",
+            "execute_command": "sudo {{.Path}}"
         },
-	"builders": [
-		{
-		"type": "googlecompute",
-		"project_id": "{{user `project_id`}}",
-		"image_name": "reddit-base-{{timestamp}}",
-		"image_family": "{{user `image_family`}}",
-		"source_image_family": "ubuntu-1604-lts",
-		"zone": "{{user `zone`}}",
-		"ssh_username": "appuser",
-		"machine_type": "{{user `machine_type`}}",
-		"disk_size": "{{user `disk_size`}}",
-		"disk_type": "{{user `disk_type`}}",
-		"network": "{{user `network`}}",
-		"tags": "{{user `tags`}}"
-		}
-	],
-	"provisioners": [
-		{
-		"type": "shell",
-		"script": "scripts/install_ruby.sh",
-		"execute_command": "sudo {{.Path}}"
-		},
-		{
-		"type": "shell",
-		"script": "scripts/install_mongodb.sh",
-		"execute_command": "sudo {{.Path}}"
-		}
-	]
+        {
+            "type": "shell",
+            "script": "scripts/install_mongodb.sh",
+            "execute_command": "sudo {{.Path}}"
+        }
+    ]
 }
+
+
