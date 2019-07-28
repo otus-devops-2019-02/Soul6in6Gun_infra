@@ -1,5 +1,7 @@
 {
-	"project_id": "infra-xxx",
-	"machine_type": "f1-micro",
-	"image_family": "reddit-full"
+    "project_id": "planar-granite-2014",
+    "source_image_family": "ubuntu-1604-lts",
+    "machine_type": "f1-micro"
 }
+
+

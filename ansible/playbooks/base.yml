@@ -1,0 +1,10 @@
+---
+- name: Chack && Install Python
+  hosts: all
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Install Python for Ansible
+      raw: test -e /sur/bin/python || (apt -y update && apt install -y python-minimal)
+      changed_when: False

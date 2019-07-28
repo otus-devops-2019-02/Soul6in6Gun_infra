@@ -1,5 +1,4 @@
----
-- name: Clone
+- name: Clone 
   hosts: app
   tasks:
     - name: Clone repo
